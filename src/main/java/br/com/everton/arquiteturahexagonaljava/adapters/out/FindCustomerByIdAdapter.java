@@ -5,9 +5,11 @@ import br.com.everton.arquiteturahexagonaljava.adapters.out.repository.mapper.Cu
 import br.com.everton.arquiteturahexagonaljava.application.core.domain.Customer;
 import br.com.everton.arquiteturahexagonaljava.application.ports.out.FindCustomerByIdOutputPort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class FindCustomerByIdAdapter implements FindCustomerByIdOutputPort {
 
     @Autowired
