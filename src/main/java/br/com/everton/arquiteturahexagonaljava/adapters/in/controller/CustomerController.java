@@ -5,6 +5,7 @@ import br.com.everton.arquiteturahexagonaljava.adapters.in.controller.request.Cu
 import br.com.everton.arquiteturahexagonaljava.adapters.in.controller.response.CustomerResponse;
 import br.com.everton.arquiteturahexagonaljava.application.ports.in.FindCustomerByIdInputPort;
 import br.com.everton.arquiteturahexagonaljava.application.ports.in.InsertCustomerInputPort;
+import br.com.everton.arquiteturahexagonaljava.application.ports.in.UpdateCustomerInputPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,9 @@ public class CustomerController {
     private FindCustomerByIdInputPort findCustomerByIdInputPort;
 
     @Autowired
+    private UpdateCustomerInputPort updateCustomerInputPort;
+
+    @Autowired
     private CustomerMapper customerMapper;
 
     @PostMapping
@@ -36,5 +40,13 @@ public class CustomerController {
         var customer = findCustomerByIdInputPort.find(id);
         var customerResponse = customerMapper.toCustomerResponse(customer);
         return ResponseEntity.ok().body(customerResponse);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable final String id, @Valid @RequestBody CustomerRequest customerRequest) {
+        var customer = customerMapper.toCustomer(customerRequest);
+        customer.setId(id);
+        updateCustomerInputPort.update(customer, customerRequest.getZipCode());
+        return ResponseEntity.noContent().build();
     }
 }
