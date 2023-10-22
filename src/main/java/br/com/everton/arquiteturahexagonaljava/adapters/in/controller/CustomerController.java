@@ -3,6 +3,7 @@ package br.com.everton.arquiteturahexagonaljava.adapters.in.controller;
 import br.com.everton.arquiteturahexagonaljava.adapters.in.controller.mapper.CustomerMapper;
 import br.com.everton.arquiteturahexagonaljava.adapters.in.controller.request.CustomerRequest;
 import br.com.everton.arquiteturahexagonaljava.adapters.in.controller.response.CustomerResponse;
+import br.com.everton.arquiteturahexagonaljava.application.ports.in.DeleteCustomerByIdInputPort;
 import br.com.everton.arquiteturahexagonaljava.application.ports.in.FindCustomerByIdInputPort;
 import br.com.everton.arquiteturahexagonaljava.application.ports.in.InsertCustomerInputPort;
 import br.com.everton.arquiteturahexagonaljava.application.ports.in.UpdateCustomerInputPort;
@@ -26,6 +27,9 @@ public class CustomerController {
     private UpdateCustomerInputPort updateCustomerInputPort;
 
     @Autowired
+    private DeleteCustomerByIdInputPort deleteCustomerByIdInputPort;
+
+    @Autowired
     private CustomerMapper customerMapper;
 
     @PostMapping
@@ -47,6 +51,12 @@ public class CustomerController {
         var customer = customerMapper.toCustomer(customerRequest);
         customer.setId(id);
         updateCustomerInputPort.update(customer, customerRequest.getZipCode());
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable final String id) {
+        deleteCustomerByIdInputPort.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
