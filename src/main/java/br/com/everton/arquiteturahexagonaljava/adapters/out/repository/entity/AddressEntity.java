@@ -1,5 +1,8 @@
 package br.com.everton.arquiteturahexagonaljava.adapters.out.repository.entity;
 
+import lombok.Data;
+
+@Data
 public class AddressEntity {
 
     private String street;

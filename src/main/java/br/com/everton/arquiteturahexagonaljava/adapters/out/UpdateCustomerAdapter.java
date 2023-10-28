@@ -1,6 +1,5 @@
 package br.com.everton.arquiteturahexagonaljava.adapters.out;
 
-import br.com.everton.arquiteturahexagonaljava.adapters.in.controller.mapper.CustomerMapper;
 import br.com.everton.arquiteturahexagonaljava.adapters.out.repository.CustomerRepository;
 import br.com.everton.arquiteturahexagonaljava.adapters.out.repository.mapper.CustomerEntityMapper;
 import br.com.everton.arquiteturahexagonaljava.application.core.domain.Customer;

@@ -2,7 +2,9 @@ package br.com.everton.arquiteturahexagonaljava.application.core.domain;
 
 public class Customer {
 
-    public Customer() {}
+    public Customer() {
+        this.isValidCpf = false;
+    }
 
     public Customer(String id, String name, Address address, String cpf, Boolean isValidCpf) {
         this.id = id;
@@ -20,7 +22,7 @@ public class Customer {
 
     private String cpf;
 
-    private boolean isValidCpf;
+    private Boolean isValidCpf;
 
     public String getId() {
         return id;
@@ -54,11 +56,11 @@ public class Customer {
         this.cpf = cpf;
     }
 
-    public boolean getValidCpf() {
+    public Boolean getIsValidCpf() {
         return isValidCpf;
     }
 
-    public void setValidCpf(boolean validCpf) {
-        isValidCpf = validCpf;
+    public void setIsValidCpf(Boolean isValidCpf) {
+        this.isValidCpf = isValidCpf;
     }
 }
