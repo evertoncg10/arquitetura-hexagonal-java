@@ -3,6 +3,7 @@ package br.com.everton.arquiteturahexagonaljava.config;
 import br.com.everton.arquiteturahexagonaljava.adapters.in.consumer.message.CustomerMessage;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
@@ -13,6 +14,7 @@ import java.util.Map;
 
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 
+@Configuration
 public class KafkaConsumerConfig {
     @Bean
     public ConsumerFactory<String, CustomerMessage> consumerFactory() {
